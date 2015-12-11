@@ -1,4 +1,4 @@
-package com.storck.lapexample;
+package com.github.guilhermestorck.lap;
 
 import org.junit.Test;
 

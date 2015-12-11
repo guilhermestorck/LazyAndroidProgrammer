@@ -1,1 +1,1 @@
-include ':app', ':LazyAndroidProgrammer'
+include ':app', ':lazy-android-programmer'
