@@ -21,7 +21,7 @@ class MyActivity extends Activity {
       LAPVerticalLayout(
         LAPTextView("Oh, look! I'm a text view!").fillWidth().padding(32),
         LAPButton("If you press me, I'll scream").fillWidth().weight(1)
-      )
+      ).build(this)
     );
   }
   
