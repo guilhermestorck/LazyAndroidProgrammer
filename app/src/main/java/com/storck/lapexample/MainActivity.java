@@ -1,9 +1,8 @@
 package com.storck.lapexample;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -12,14 +11,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.github.guilhermestorck.lap.builder.LAPTextView;
-import com.github.guilhermestorck.lap.util.LAPFragment;
 
 import static com.github.guilhermestorck.lap.LazyAndroidProgrammer.*;
 
@@ -66,32 +59,36 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            Context ctx = MainActivity.this;
+            Activity ctx = MainActivity.this;
             switch (position) {
                 case 0:
-                    return LAPFragment.make(
+                    return LAPFragment(
                         LAPVerticalLayout(
                             LAPTextView("LAPTextView"),
-                            LAPTextView("This is a LAPTextView")
+                            LAPTextView("This is a LAPTextView").weight(1).height(0)
                         ).build(ctx)
                     );
                 case 1:
-                    return LAPFragment.make(
+                    return LAPFragment(
                         LAPVerticalLayout(
-                            LAPTextView("LAPButtonView"),
-                            LAPButton("This is a ALAPButton")
+                            LAPTextView("LAPButtonView").backgroundColor(Color.GREEN).weight(7),
+                            LAPButton("This is a ALAPButton").weight(3).height(0)
                         ).build(ctx)
                     );
                 case 2:
-                    return LAPFragment.make(
+                    return LAPFragment(
                         LAPVerticalLayout(
                             LAPTextView("LAPHorizontalLayout"),
                             LAPHorizontalLayout(
-                                LAPButton("I'm a wrapped button"),
-                                LAPButton("I'm a button that fills the height").fillHeight(),
+                                LAPButton("I'm a wrapped button").wrapHeight().width(100),
+                                LAPButton("I'm a button that fills the height").fillHeight().width(100),
                                 LAPButton("I have a bigger weight").weight(1)
                             ).fillWidth()
                         ).build(ctx)
+                    );
+                case 3:
+                    return LAPFragment(
+                        LAPButton("I'm a pink button").backgroundColorRes(R.color.colorAccent).build(ctx)
                     );
             }
             return null;
@@ -99,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 3;
+            return 4;
         }
 
         @Override

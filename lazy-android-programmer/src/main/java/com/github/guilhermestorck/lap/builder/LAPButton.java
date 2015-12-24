@@ -16,6 +16,15 @@ public final class LAPButton extends ALAPButton<LAPButton> {
         onClick(callback);
     }
 
+    public LAPButton(Integer labelRes) {
+        this(labelRes, null);
+    }
+
+    public LAPButton(Integer labelRes, View.OnClickListener callback) {
+        textRes(labelRes);
+        onClick(callback);
+    }
+
     @Override
     LAPButton self() {
         return this;

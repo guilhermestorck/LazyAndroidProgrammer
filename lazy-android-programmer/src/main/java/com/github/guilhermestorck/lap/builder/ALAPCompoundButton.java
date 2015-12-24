@@ -1,7 +1,6 @@
 package com.github.guilhermestorck.lap.builder;
 
 import android.content.Context;
-import android.widget.Button;
 import android.widget.CompoundButton;
 
 /**

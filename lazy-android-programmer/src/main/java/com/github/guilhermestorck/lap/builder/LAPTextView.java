@@ -9,6 +9,10 @@ public final class LAPTextView extends ALAPTextView<LAPTextView> {
         text(label);
     }
 
+    public LAPTextView(Integer labelRes) {
+        textRes(labelRes);
+    }
+
     @Override
     LAPTextView self() {
         return this;

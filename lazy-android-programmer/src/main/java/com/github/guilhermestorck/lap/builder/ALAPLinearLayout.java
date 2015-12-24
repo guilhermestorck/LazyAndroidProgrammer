@@ -2,7 +2,6 @@ package com.github.guilhermestorck.lap.builder;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 /**

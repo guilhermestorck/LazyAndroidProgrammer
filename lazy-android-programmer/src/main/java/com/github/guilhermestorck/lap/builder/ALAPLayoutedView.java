@@ -14,8 +14,8 @@ abstract class ALAPLayoutedView<T> extends ALAPView<T> {
     private Integer height = null;
     private Integer weight = null;
 
-    private final Integer WRAP = -2;
-    private final Integer FILL = -1;
+    private final Integer WRAP = ViewGroup.LayoutParams.WRAP_CONTENT;
+    private final Integer FILL = ViewGroup.LayoutParams.MATCH_PARENT;
 
 
     public T width(Integer width) {

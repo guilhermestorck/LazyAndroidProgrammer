@@ -25,6 +25,7 @@ abstract class ALAPView<T> implements LAPView {
         if(alpha != null) v.setAlpha(alpha);
         if(background != null) v.setBackgroundDrawable(background);
         if(backgroundColor != null) v.setBackgroundColor(backgroundColor);
+        if(backgroundColorResource != null) v.setBackgroundColor(ctx.getResources().getColor(backgroundColorResource));
         if(backgroundResource != null) v.setBackgroundResource(backgroundResource);
         //TODO how do I manage that?
         //if(elevation != null) v.setElevation(elevation);
@@ -45,6 +46,7 @@ abstract class ALAPView<T> implements LAPView {
     private Float alpha = null;
     private Drawable background = null;
     private Integer backgroundColor = null;
+    private Integer backgroundColorResource = null;
     private Integer backgroundResource = null;
     //private Float elevation = null;
     private Boolean enabled = null;
@@ -54,7 +56,7 @@ abstract class ALAPView<T> implements LAPView {
     private Integer paddingLeft = 0, paddingRight = 0, paddingTop = 0, paddingBottom = 0;
     //private Integer textAlignment = null;
     //private Integer textDirection = null;
-    private Integer visibility = null;
+    private Integer visibility = View.VISIBLE;
 
     public T onClick(OnClickListener onClick) {
         this.onClick = onClick;
@@ -78,6 +80,13 @@ abstract class ALAPView<T> implements LAPView {
 
     public T backgroundColor(Integer backgroundColor) {
         this.backgroundColor = backgroundColor;
+        this.backgroundColorResource = null;
+        return self();
+    }
+
+    public T backgroundColorRes(Integer backgroundColorResource) {
+        this.backgroundColor = null;
+        this.backgroundColorResource = backgroundColorResource;
         return self();
     }
 

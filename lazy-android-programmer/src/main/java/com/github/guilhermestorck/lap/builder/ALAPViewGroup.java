@@ -2,7 +2,6 @@ package com.github.guilhermestorck.lap.builder;
 
 import android.content.Context;
 import android.view.ViewGroup;
-import android.view.View;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,16 +13,22 @@ abstract class ALAPViewGroup<T> extends ALAPLayoutedView<T> {
 
     ALAPViewGroup() { }
 
-    protected ViewGroup fill(ViewGroup v, Context ctx) {
-        v = (ViewGroup) super.fill(v, ctx);
-        for(LAPView view : views) {
-            if(view instanceof ALAPLayoutedView) {
-                v.addView(view.build(ctx), ((ALAPLayoutedView) view).getLayoutParams(v));
-            } else {
-                v.addView(view.build(ctx));
+    protected ViewGroup fill(ViewGroup v, final Context ctx) {
+        final ViewGroup viewGroup = (ViewGroup) ALAPViewGroup.super.fill(v, ctx);
+        Runnable worker = new Runnable() {
+            @Override
+            public void run() {
+                for(LAPView view : views) {
+                    if(view instanceof ALAPLayoutedView) {
+                        viewGroup.addView(view.build(ctx), ((ALAPLayoutedView) view).getLayoutParams(viewGroup));
+                    } else {
+                        viewGroup.addView(view.build(ctx));
+                    }
+                }
             }
-        }
-        return v;
+        };
+        viewGroup.post(worker);
+        return viewGroup;
     }
 
     List<LAPView> views = new LinkedList<>();

@@ -18,9 +18,10 @@ abstract class ALAPTextView<T> extends ALAPLayoutedView<T> {
     protected TextView fill(TextView v, Context ctx) {
         v = (TextView) super.fill(v, ctx);
         if(text != null) v.setText(text);
+        if(textRes != null) v.setText(textRes);
         if(allCaps != null) v.setAllCaps(allCaps);
         if(autoLinkMask != null) v.setAutoLinkMask(autoLinkMask);
-        if(breakStrategy != null) v.setBreakStrategy(breakStrategy);
+        //TODO if(breakStrategy != null) v.setBreakStrategy(breakStrategy);
         if(ems != null) v.setEms(ems);
         if(gravity != null) v.setGravity(gravity);
         if(height != null) v.setHeight(height);
@@ -28,6 +29,7 @@ abstract class ALAPTextView<T> extends ALAPLayoutedView<T> {
     }
 
     private CharSequence text;
+    private Integer textRes;
     private Boolean allCaps = null;
     private Integer autoLinkMask = null;
     private Integer breakStrategy = null;
@@ -37,6 +39,13 @@ abstract class ALAPTextView<T> extends ALAPLayoutedView<T> {
 
     public T text(CharSequence text) {
         this.text = text;
+        this.textRes = null;
+        return self();
+    }
+
+    public T textRes(Integer res) {
+        this.text = null;
+        this.textRes = res;
         return self();
     }
 
