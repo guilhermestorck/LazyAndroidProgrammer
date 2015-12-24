@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -80,10 +81,10 @@ public class MainActivity extends AppCompatActivity {
                         LAPVerticalLayout(
                             LAPTextView("LAPHorizontalLayout"),
                             LAPHorizontalLayout(
-                                LAPButton("I'm a wrapped button").wrapHeight().width(100),
-                                LAPButton("I'm a button that fills the height").fillHeight().width(100),
-                                LAPButton("I have a bigger weight").weight(1)
-                            ).fillWidth()
+                                LAPButton("I'm a wrapped button").wrapHeight().gravity(Gravity.CENTER_VERTICAL),
+                                LAPButton("I'm a button that fills the height").fillHeight(),
+                                LAPButton("I have a bigger weight").weight(1).width(0)
+                            ).fillWidth().weight(1)
                         ).build(ctx)
                     );
                 case 3:

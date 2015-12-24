@@ -24,7 +24,7 @@ class MyActivity extends Activity {
       ).build(this)
     );
   }
-  
+
   ...
 
 }
@@ -35,15 +35,104 @@ Now we can =)
 Just import all the statics from the `com.github.guilhermestorck.lap.LazyAndroidProgrammer` class (or just the ones you need, if you're not that lazy) and start using them.
 By using those builder methods and the chain setters of each class it is possible to create layouts in a very concise way.
 
+## Creating components
+
+###### LAPTextView
+```java
+LAPTextView(String label);
+LAPTextView(String labelRes);
+```
+###### LAPButton
+```java
+LAPButton(String label);
+LAPButton(String label, View.OnClickListener callback);
+
+LAPButton(Integer labelRes);
+LAPButton(Integer labelRes, View.OnClickListener callback);
+```
+###### LAPCheckBox
+```java
+LAPCheckBox(String label);
+LAPCheckBox(String label, View.OnClickListener callback);
+
+LAPCheckBox(Integer labelRes);
+LAPCheckBox(Integer labelRes, View.OnClickListener callback);
+```
+###### LAPLinearLayout
+```java
+LAPLinearLayout(int orientation, LAPView... views);
+LAPVerticalLayout(LAPView... views);
+LAPHorizontalLayout(LAPView... views);
+```
+
+where `orientation` can be one of `LinearLayout.VERTICAL` or `LinearLayout.VERTICAL`.
+###### LAPFragment
+```java
+LAPFragment(View view);
+LAPFragment(Context ctx, LAPView view);
+```
+###### LAP
+```java
+LAP(View view);
+```
+
+## Modifying components
+| Modifier | Modifiable components |
+|-------------|:-----------------:|
+| id(Integer id) |All |
+| onClick(OnClickListener onClick) | All |
+| onLongClick(OnLongClickListener onLongClick) | All |
+| alpha(Float alpha) | All |
+| background(Drawable background) | All |
+| backgroundColor(Integer backgroundColor) | All |
+| backgroundColorRes(Integer backgroundColorResource) | All |
+| backgroundResource(Integer backgroundResource) | All |
+| enabled(Boolean enabled) | All |
+| minHeight(Integer minHeight) | All |
+| minWidth(Integer minWidth) | All |
+| paddingLeft(Integer paddingLeft) | All |
+| paddingRight(Integer paddingRight) | All |
+| paddingTop(Integer paddingTop) | All |
+| paddingBottom(Integer padding) | All |
+| padding(Integer paddingTopBottom, Integer paddingLeftRight) | All |
+| padding(Integer padding) | All |
+| visibility(Integer visibility) | All |
+| invisible() | All |
+| visible() | All |
+| gone() | All |
+| width(Integer width) | All |
+| fillWidth() | All |
+| wrapWidth() | All |
+| height(Integer height) | All |
+| fillHeight() | All |
+| wrapHeight() | All |
+| weight(Integer weight) | All |
+| add(LAPView view) | LAPLinearLayout |
+| add(LAPView view, int index) | LAPLinearLayout |
+| text(CharSequence text) | LAPTextView, LAPButton, LAPCheckbox |
+| textRes(Integer res) | LAPTextView, LAPButton, LAPCheckbox |
+| allCaps(Boolean allCaps) | LAPTextView, LAPButton, LAPCheckbox |
+| autoLinkMask(Integer autoLinkMask) | LAPTextView, LAPButton, LAPCheckbox |
+| ems(Integer ems) | LAPTextView, LAPButton, LAPCheckbox |
+| gravity(Integer gravity) | LAPTextView, LAPButton, LAPCheckbox, LAPLinearLayout |
+| height(Integer height) | LAPTextView, LAPButton, LAPCheckbox |
+| checked(Boolean checked) | LAPCheckbox |
+| onCheckedChange(CompoundButton.OnCheckedChangeListener onCheckedChange) | LAPCheckbox |
+| dividerDrawable(Drawable dividerDrawable) | LAPLinearLayout |
+| orientation(Integer orientation) | LAPLinearLayout |
+| weightSum(Float weightSum) | LAPLinearLayout |
+
+
+
 
     Copyright 2015 Guilherme Storck
-    
+
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-    
+
     http://www.apache.org/licenses/LICENSE-2.0
-    
+
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.

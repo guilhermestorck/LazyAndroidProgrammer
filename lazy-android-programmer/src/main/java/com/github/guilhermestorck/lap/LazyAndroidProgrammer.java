@@ -1,6 +1,7 @@
 package com.github.guilhermestorck.lap;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -93,7 +94,7 @@ public class LazyAndroidProgrammer {
         return new LAP<T>(view);
     }
 
-    public static LAPFragment LAPFragment(Activity ctx, LAPView view)
+    public static LAPFragment LAPFragment(Context ctx, LAPView view)
     {
         return LAPFragment.make(ctx, view);
     }
