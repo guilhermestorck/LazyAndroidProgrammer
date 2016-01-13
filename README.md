@@ -4,6 +4,23 @@
 When writing Android code sometimes we feel that the code we are writing could be expressed more briefly.
 Depending on how lazy one is, creating tons of xml layout files even for the simplest layout is a challenge.
 
+## Instalation
+
+Just add the following line to your `build.gradle`
+
+```
+compile 'com.github.guilhermestorck:lazy-android-programmer:0.0.7'
+```
+
+This library is available at jcenter.
+Notice that this library depends on a few [Android support libraries](http://developer.android.com/tools/support-library/features.html). If your project also depends on those and you are getting some version issues, add the following to override the library dependencies with yours.
+
+```
+compile ('com.github.guilhermestorck:lazy-android-programmer:0.0.7') {
+    exclude group: 'com.android.support'
+}
+```
+
 ## Layout Fluent Builder
 
 It would be cool if we could write
@@ -96,6 +113,12 @@ LAP(View view);
 | paddingBottom(Integer padding) | All |
 | padding(Integer paddingTopBottom, Integer paddingLeftRight) | All |
 | padding(Integer padding) | All |
+| marginLeft(Integer marginLeft) | All |
+| marginRight(Integer marginRight) | All |
+| marginTop(Integer marginTop) | All |
+| marginBottom(Integer margin) | All |
+| margin(Integer marginTopBottom, Integer marginLeftRight) | All |
+| margin(Integer padding) | All |
 | visibility(Integer visibility) | All |
 | invisible() | All |
 | visible() | All |
@@ -123,7 +146,12 @@ LAP(View view);
 | weightSum(Float weightSum) | LAPLinearLayout |
 
 
+## Other functions
 
+```java
+dp(int n) //converts n dp to pixels
+sp(int n) //converts n sp to pixels
+```
 
     Copyright 2015 Guilherme Storck
 
