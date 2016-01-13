@@ -14,6 +14,8 @@ abstract class ALAPLayoutedView<T> extends ALAPView<T> {
     private Integer height = null;
     private Integer weight = null;
 
+    private Integer marginLeft = 0, marginRight = 0, marginTop = 0, marginBottom = 0;
+
     private final Integer WRAP = ViewGroup.LayoutParams.WRAP_CONTENT;
     private final Integer FILL = ViewGroup.LayoutParams.MATCH_PARENT;
 
@@ -52,6 +54,42 @@ abstract class ALAPLayoutedView<T> extends ALAPView<T> {
         return self();
     }
 
+    public T marginLeft(Integer marginLeft) {
+        this.marginLeft = marginLeft;
+        return self();
+    }
+
+    public T marginRight(Integer marginRight) {
+        this.marginRight = marginRight;
+        return self();
+    }
+
+    public T marginTop(Integer marginTop) {
+        this.marginTop = marginTop;
+        return self();
+    }
+
+    public T marginBottom(Integer margin) {
+        this.marginBottom = margin;
+        return self();
+    }
+
+    public T margin(Integer marginTopBottom, Integer marginLeftRight) {
+        this.marginTop = marginTopBottom;
+        this.marginBottom = marginTopBottom;
+        this.marginLeft = marginLeftRight;
+        this.marginRight = marginLeftRight;
+        return self();
+    }
+
+    public T margin(Integer margin) {
+        this.marginTop = margin;
+        this.marginBottom = margin;
+        this.marginLeft = margin;
+        this.marginRight = margin;
+        return self();
+    }
+
     public ViewGroup.LayoutParams getLayoutParams(ViewGroup viewGroup) {
         if(viewGroup instanceof LinearLayout)
             return getLayoutParams((LinearLayout) viewGroup);
@@ -61,10 +99,12 @@ abstract class ALAPLayoutedView<T> extends ALAPView<T> {
     public LinearLayout.LayoutParams getLayoutParams(LinearLayout layout) {
         Integer defaultWidth = ( layout.getOrientation() == LinearLayout.HORIZONTAL ? WRAP : FILL );
         Integer defaultHeight = ( layout.getOrientation() == LinearLayout.HORIZONTAL ? FILL : WRAP );
-        return new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
             width != null ? width : defaultWidth,
             height != null ? height : defaultHeight,
             weight != null ? weight : 0f
         );
+        params.setMargins(marginLeft, marginTop, marginRight, marginBottom);
+        return params;
     }
 }

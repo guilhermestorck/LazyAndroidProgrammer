@@ -1,5 +1,6 @@
 package com.github.guilhermestorck.lap.builder;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -12,13 +13,13 @@ abstract class ALAPFrameLayout<T> extends ALAPViewGroup<T> {
     ALAPFrameLayout() {
     }
 
-    public FrameLayout build(Context ctx) {
-        FrameLayout view = new FrameLayout(ctx);
-        return fill(view, ctx);
+    public FrameLayout build(Activity activity) {
+        FrameLayout view = new FrameLayout(activity);
+        return fill(view, activity);
     }
 
-    protected FrameLayout fill(FrameLayout v, Context ctx) {
-        v = (FrameLayout) super.fill(v, ctx);
+    protected FrameLayout fill(FrameLayout v, Activity activity) {
+        v = (FrameLayout) super.fill(v, activity);
         return v;
     }
 

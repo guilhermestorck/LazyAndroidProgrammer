@@ -1,5 +1,6 @@
 package com.github.guilhermestorck.lap.builder;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -20,20 +21,20 @@ abstract class ALAPListView<T, I> extends ALAPViewGroup<T> {
 
     ALAPListView() {  }
 
-    public ListView build(Context ctx) {
-        ListView view = new ListView(ctx);
-        return fill(view, ctx);
+    public ListView build(Activity activity) {
+        ListView view = new ListView(activity);
+        return fill(view, activity);
     }
 
-    protected ListView fill(ListView v, Context ctx) {
-        v = (ListView) super.fill(v, ctx);
+    protected ListView fill(ListView v, Activity activity) {
+        v = (ListView) super.fill(v, activity);
         if(adapter != null) {
             v.setAdapter(adapter);
         } else {
             if(viewMaker != null) {
-                v.setAdapter(createLAPAdapter(ctx, items, viewMaker));
+                v.setAdapter(createLAPAdapter(activity, items, viewMaker));
             } else {
-                v.setAdapter(createLAPAdapter(ctx, items));
+                v.setAdapter(createLAPAdapter(activity, items));
             }
         }
         return v;
@@ -60,8 +61,8 @@ abstract class ALAPListView<T, I> extends ALAPViewGroup<T> {
         return self();
     }
 
-    private ListAdapter createLAPAdapter(final Context ctx, List<I> items) {
-        return createLAPAdapter(ctx, items, new LAPViewMaker() {
+    private ListAdapter createLAPAdapter(final Activity activity, List<I> items) {
+        return createLAPAdapter(activity, items, new LAPViewMaker() {
 
             @Override
             public LAPView makeView(Object object) {
@@ -71,8 +72,8 @@ abstract class ALAPListView<T, I> extends ALAPViewGroup<T> {
         });
     }
 
-    private ListAdapter createLAPAdapter(final Context ctx, List<I> items, LAPViewMaker<I> viewMaker) {
-        return new LAPAdapter<I>(ctx, items, viewMaker);
+    private ListAdapter createLAPAdapter(final Activity activity, List<I> items, LAPViewMaker<I> viewMaker) {
+        return new LAPAdapter<I>(activity, items, viewMaker);
     }
 
 }

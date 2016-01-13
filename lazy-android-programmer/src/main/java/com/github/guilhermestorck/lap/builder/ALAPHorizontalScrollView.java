@@ -1,5 +1,6 @@
 package com.github.guilhermestorck.lap.builder;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
@@ -12,13 +13,13 @@ abstract class ALAPHorizontalScrollView<T>  extends ALAPFrameLayout<T> {
     ALAPHorizontalScrollView() {
     }
 
-    public HorizontalScrollView build(Context ctx) {
-        HorizontalScrollView view = new HorizontalScrollView(ctx);
-        return fill(view, ctx);
+    public HorizontalScrollView build(Activity activity) {
+        HorizontalScrollView view = new HorizontalScrollView(activity);
+        return fill(view, activity);
     }
 
-    protected HorizontalScrollView fill(HorizontalScrollView v, Context ctx) {
-        v = (HorizontalScrollView) super.fill(v, ctx);
+    protected HorizontalScrollView fill(HorizontalScrollView v, Activity activity) {
+        v = (HorizontalScrollView) super.fill(v, activity);
         return v;
     }
 

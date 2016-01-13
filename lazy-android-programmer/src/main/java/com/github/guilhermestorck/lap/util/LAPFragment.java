@@ -1,5 +1,6 @@
 package com.github.guilhermestorck.lap.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.guilhermestorck.lap.LAPBuilder;
 import com.github.guilhermestorck.lap.builder.LAPView;
 
 /**
@@ -25,9 +27,9 @@ public class LAPFragment extends Fragment {
         return frag;
     }
 
-    public static LAPFragment make(Context ctx, LAPView view) {
+    public static LAPFragment make(Activity activity, LAPView view) {
         LAPFragment frag = new LAPFragment();
-        frag.view = view.build(ctx);
+        frag.view = LAPBuilder.build(view, activity);
         return frag;
     }
 

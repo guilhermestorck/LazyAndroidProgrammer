@@ -1,6 +1,6 @@
 package com.github.guilhermestorck.lap.builder;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 
 /**
@@ -8,6 +8,6 @@ import android.view.View;
  */
 public interface LAPView {
 
-    View build(Context ctx);
+    View build(Activity activity);
 
 }

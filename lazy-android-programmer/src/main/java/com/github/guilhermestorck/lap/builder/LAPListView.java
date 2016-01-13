@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by gstorck on 30/11/2015.
  */
-public final class LAPListView<I> extends ALAPListView<LAPListView, I> {
+public final class LAPListView<I> extends ALAPListView<LAPListView<I>, I> {
 
     public LAPListView(ListAdapter adapter) {
         adapter(adapter);
@@ -24,7 +24,7 @@ public final class LAPListView<I> extends ALAPListView<LAPListView, I> {
     }
 
     @Override
-    LAPListView self() {
+    LAPListView<I> self() {
         return this;
     }
 }

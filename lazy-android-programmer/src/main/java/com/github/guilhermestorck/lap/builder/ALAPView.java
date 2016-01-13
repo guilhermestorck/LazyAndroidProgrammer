@@ -1,5 +1,6 @@
 package com.github.guilhermestorck.lap.builder;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.View;
@@ -14,18 +15,18 @@ abstract class ALAPView<T> implements LAPView {
 
     ALAPView() {  }
 
-    public View build(Context ctx) {
-        View view = new View(ctx);
-        return fill(view, ctx);
+    public View build(Activity activity) {
+        View view = new View(activity);
+        return fill(view, activity);
     }
 
-    protected View fill(View v, Context ctx) {
+    protected View fill(View v, Activity activity) {
         if(onClick != null) v.setOnClickListener(onClick);
         if(id != null) v.setId(id);
         if(alpha != null) v.setAlpha(alpha);
         if(background != null) v.setBackgroundDrawable(background);
         if(backgroundColor != null) v.setBackgroundColor(backgroundColor);
-        if(backgroundColorResource != null) v.setBackgroundColor(ctx.getResources().getColor(backgroundColorResource));
+        if(backgroundColorResource != null) v.setBackgroundColor(activity.getResources().getColor(backgroundColorResource));
         if(backgroundResource != null) v.setBackgroundResource(backgroundResource);
         //TODO how do I manage that?
         //if(elevation != null) v.setElevation(elevation);

@@ -1,5 +1,6 @@
 package com.github.guilhermestorck.lap.builder;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 
@@ -15,8 +16,8 @@ public final class LAP<V extends View> extends ALAPLayoutedView<LAP<V>> {
     }
 
     @Override
-    public View build(Context ctx) {
-        return fill(view, ctx);
+    public View build(Activity activity) {
+        return fill(view, activity);
     }
 
     @Override

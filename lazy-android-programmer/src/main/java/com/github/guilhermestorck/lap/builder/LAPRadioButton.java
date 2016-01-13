@@ -14,6 +14,15 @@ public final class LAPRadioButton extends ALAPCompoundButton<LAPRadioButton> {
         checked(checked);
     }
 
+    public LAPRadioButton(Integer labelRes) {
+        this(labelRes, false);
+    }
+
+    public LAPRadioButton(Integer labelRes, Boolean checked) {
+        textRes(labelRes);
+        checked(checked);
+    }
+
     @Override
     LAPRadioButton self() {
         return this;

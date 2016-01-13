@@ -1,9 +1,12 @@
 package com.github.guilhermestorck.lap.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import com.github.guilhermestorck.lap.LAPBuilder;
 
 import java.util.List;
 
@@ -14,10 +17,10 @@ public class LAPAdapter<T> extends BaseAdapter {
 
     private List<T> items;
     private LAPViewMaker<T> viewMaker;
-    private Context ctx;
+    private Activity activity;
 
-    public LAPAdapter(final Context ctx, List<T> items, LAPViewMaker<T> viewMaker) {
-        this.ctx = ctx;
+    public LAPAdapter(final Activity activity, List<T> items, LAPViewMaker<T> viewMaker) {
+        this.activity = activity;
         this.items = items;
         this.viewMaker = viewMaker;
     }
@@ -39,6 +42,6 @@ public class LAPAdapter<T> extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return viewMaker.makeView( (T) getItem(position) ).build(ctx);
+        return LAPBuilder.build(viewMaker.makeView((T) getItem(position)), activity);
     }
 }

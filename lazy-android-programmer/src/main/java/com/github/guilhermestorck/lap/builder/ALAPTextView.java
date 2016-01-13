@@ -1,5 +1,6 @@
 package com.github.guilhermestorck.lap.builder;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.TextView;
 
@@ -10,13 +11,13 @@ abstract class ALAPTextView<T> extends ALAPLayoutedView<T> {
 
     ALAPTextView() { }
 
-    public TextView build(Context ctx) {
-        TextView view = new TextView(ctx);
-        return fill(view, ctx);
+    public TextView build(Activity activity) {
+        TextView view = new TextView(activity);
+        return fill(view, activity);
     }
 
-    protected TextView fill(TextView v, Context ctx) {
-        v = (TextView) super.fill(v, ctx);
+    protected TextView fill(TextView v, Activity activity) {
+        v = (TextView) super.fill(v, activity);
         if(text != null) v.setText(text);
         if(textRes != null) v.setText(textRes);
         if(allCaps != null) v.setAllCaps(allCaps);

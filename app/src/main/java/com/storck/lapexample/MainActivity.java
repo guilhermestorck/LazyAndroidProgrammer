@@ -15,6 +15,12 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.github.guilhermestorck.lap.builder.LAPView;
+import com.github.guilhermestorck.lap.util.LAPViewMaker;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.github.guilhermestorck.lap.LazyAndroidProgrammer.*;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,6 +58,34 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public List<Item> generateList(int size) {
+        List<Item> items = new ArrayList<>();
+        for(int i = 0; i < size; ++i) {
+            Item item = new Item();
+            item.nome = String.valueOf((char)('A' + i%23)) + String.valueOf(i/23 + 1);
+            item.index = i;
+            switch(i%5){
+                case 0: item.bla = "Bla"; break;
+                case 1: item.bla = "Ble"; break;
+                case 2: item.bla = "Bli"; break;
+                case 3: item.bla = "Blo"; break;
+                case 4: item.bla = "Blu"; break;
+            }
+            items.add(item);
+        }
+        return items;
+    }
+
+    public class Item {
+        public String nome;
+        public Integer index;
+        public String bla;
+
+        public String toString() {
+            return nome + " [" + index + "] " + bla;
+        }
+    }
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -64,32 +98,54 @@ public class MainActivity extends AppCompatActivity {
             switch (position) {
                 case 0:
                     return LAPFragment(
-                        LAPVerticalLayout(
+                        build(LAPVerticalLayout(
                             LAPTextView("LAPTextView"),
                             LAPTextView("This is a LAPTextView").weight(1).height(0)
-                        ).build(ctx)
+                        ), ctx)
                     );
                 case 1:
                     return LAPFragment(
-                        LAPVerticalLayout(
+                        build(LAPVerticalLayout(
                             LAPTextView("LAPButtonView").backgroundColor(Color.GREEN).weight(7),
                             LAPButton("This is a ALAPButton").weight(3).height(0)
-                        ).build(ctx)
+                        ), ctx)
                     );
                 case 2:
                     return LAPFragment(
-                        LAPVerticalLayout(
+                        build(LAPVerticalLayout(
                             LAPTextView("LAPHorizontalLayout"),
                             LAPHorizontalLayout(
-                                LAPButton("I'm a wrapped button").wrapHeight().gravity(Gravity.CENTER_VERTICAL),
-                                LAPButton("I'm a button that fills the height").fillHeight(),
-                                LAPButton("I have a bigger weight").weight(1).width(0)
-                            ).fillWidth().weight(1)
-                        ).build(ctx)
+                                LAPButton("Wrapping").wrapHeight().gravity(Gravity.CENTER_VERTICAL),
+                                LAPButton("Filling").wrapHeight(),
+                                LAPButton("Bigger weight").weight(1)
+                            ).weight(1)
+                        ), ctx)
                     );
                 case 3:
                     return LAPFragment(
-                        LAPButton("I'm a pink button").backgroundColorRes(R.color.colorAccent).build(ctx)
+                        build(LAPButton("I'm a pink button").backgroundColorRes(R.color.colorAccent), ctx)
+                    );
+                case 4:
+                    return LAPFragment(
+                        build(LAPVerticalLayout(
+                            LAPTextView("LAPListView simple"),
+                            LAPListView(generateList(50)).weight(1).height(0)
+                        ), ctx)
+                    );
+                case 5:
+                    return LAPFragment(
+                        build(LAPVerticalLayout(
+                            LAPTextView("LAPListView with LAPViewMaker"),
+                            LAPListView(generateList(50), new LAPViewMaker<Item>() {
+                                @Override
+                                public LAPView makeView(Item item) {
+                                    return LAPHorizontalLayout(
+                                        LAPTextView(item.nome).padding(dp(16)),
+                                        LAPTextView(item.bla).allCaps(true).margin(dp(16), dp(8))
+                                    );
+                                }
+                            }).weight(1).height(0)
+                        ), ctx)
                     );
             }
             return null;
@@ -97,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 4;
+            return 6;
         }
 
         @Override

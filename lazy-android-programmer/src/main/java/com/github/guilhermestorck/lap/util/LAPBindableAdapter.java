@@ -1,5 +1,6 @@
 package com.github.guilhermestorck.lap.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +15,10 @@ public class LAPBindableAdapter<T> extends BaseAdapter {
 
     private List<T> items;
     private LAPBindableViewMaker<T> viewMaker;
-    private Context ctx;
+    private Activity activity;
 
-    public LAPBindableAdapter(final Context ctx, List<T> items, LAPBindableViewMaker<T> viewMaker) {
-        this.ctx = ctx;
+    public LAPBindableAdapter(final Activity activity, List<T> items, LAPBindableViewMaker<T> viewMaker) {
+        this.activity = activity;
         this.items = items;
         this.viewMaker = viewMaker;
     }
@@ -41,7 +42,8 @@ public class LAPBindableAdapter<T> extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View bindView;
         if (convertView == null) {
-            bindView = viewMaker.makeView().build(ctx);
+            //TODO start using LAPBuilder
+            bindView = viewMaker.makeView().build(activity);
         } else {
             bindView = convertView;
         }

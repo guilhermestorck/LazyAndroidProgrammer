@@ -1,5 +1,6 @@
 package com.github.guilhermestorck.lap.builder;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.CompoundButton;
 
@@ -10,8 +11,8 @@ abstract class ALAPCompoundButton<T> extends ALAPButton<T>{
 
     ALAPCompoundButton() { }
 
-    protected CompoundButton fill(CompoundButton v, Context ctx) {
-        v = (CompoundButton) super.fill(v, ctx);
+    protected CompoundButton fill(CompoundButton v, Activity activity) {
+        v = (CompoundButton) super.fill(v, activity);
         if(checked != null) v.setChecked(checked);
         if(onCheckedChange != null) v.setOnCheckedChangeListener(onCheckedChange);
         return v;
