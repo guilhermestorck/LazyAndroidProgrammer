@@ -42,6 +42,6 @@ public class LAPAdapter<T> extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return LAPBuilder.build(viewMaker.makeView((T) getItem(position)), activity);
+        return LAPBuilder.build(activity, viewMaker.makeView((T) getItem(position)));
     }
 }

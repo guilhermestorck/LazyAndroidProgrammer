@@ -15,7 +15,7 @@ import java.util.concurrent.Semaphore;
  */
 public class LAPBuilder implements Runnable{
 
-    public static <T extends LAPView> View build(final T lapView, final Activity activity) {
+    public static <T extends LAPView> View build(final Activity activity, final T lapView) {
         final Semaphore mutex = new Semaphore(0);
         LAPBuilder lapBuilder = new LAPBuilder(mutex, lapView, activity);
         if(Looper.getMainLooper() == Looper.myLooper()) {

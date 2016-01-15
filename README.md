@@ -9,14 +9,14 @@ Depending on how lazy one is, creating tons of xml layout files even for the sim
 Just add the following line to your `build.gradle`
 
 ```
-compile 'com.github.guilhermestorck:lazy-android-programmer:0.0.7'
+compile 'com.github.guilhermestorck:lazy-android-programmer:0.0.8'
 ```
 
 This library is available at jcenter.
 Notice that this library depends on a few [Android support libraries](http://developer.android.com/tools/support-library/features.html). If your project also depends on those and you are getting some version issues, add the following to override the library dependencies with yours.
 
 ```
-compile ('com.github.guilhermestorck:lazy-android-programmer:0.0.7') {
+compile ('com.github.guilhermestorck:lazy-android-programmer:0.0.8') {
     exclude group: 'com.android.support'
 }
 ```
@@ -100,6 +100,13 @@ LAPFragment(Context ctx, LAPView view);
 ###### LAP
 ```java
 LAP(View view);
+```
+
+## Building View objects
+To create a view from a LAPView object, just call the `build` method
+
+```java
+View build(Activity activity, LAPView lapView)
 ```
 
 ## Modifying components

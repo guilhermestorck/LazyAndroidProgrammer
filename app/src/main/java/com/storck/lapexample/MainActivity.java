@@ -102,82 +102,95 @@ public class MainActivity extends AppCompatActivity {
             switch (position) {
                 case 0:
                     return LAPFragment(
-                        build(LAPVerticalLayout(
-                            LAPTextView("LAPTextView"),
-                            LAPTextView("This is a LAPTextView").weight(1).height(0)
-                        ), ctx)
+                        build(ctx,
+                            LAPVerticalLayout(
+                                LAPTextView("LAPTextView"),
+                                LAPTextView("This is a LAPTextView").weight(1).height(0)
+                            )
+                        )
                     );
                 case 1:
                     return LAPFragment(
-                        build(LAPVerticalLayout(
-                            LAPTextView("LAPButtonView").backgroundColor(Color.GREEN).weight(7),
-                            LAPButton("This is a ALAPButton").weight(3).height(0)
-                        ), ctx)
+                        build(ctx,
+                            LAPVerticalLayout(
+                                LAPTextView("LAPButtonView").backgroundColor(Color.GREEN).weight(7),
+                                LAPButton("This is a ALAPButton").weight(3).height(0)
+                            )
+                        )
                     );
                 case 2:
                     return LAPFragment(
-                        build(LAPVerticalLayout(
-                            LAPTextView("LAPHorizontalLayout"),
-                            LAPHorizontalLayout(
-                                LAPButton("Wrapping").wrapHeight().gravity(Gravity.CENTER_VERTICAL),
-                                LAPButton("Filling").fillHeight(),
-                                LAPButton("Bigger weight").weight(1)
-                            ).weight(1)
-                        ), ctx)
+                        build(ctx,
+                            LAPVerticalLayout(
+                                LAPTextView("LAPHorizontalLayout"),
+                                LAPHorizontalLayout(
+                                    LAPButton("Wrapping").wrapHeight().gravity(Gravity.CENTER_VERTICAL),
+                                    LAPButton("Filling").fillHeight(),
+                                    LAPButton("Bigger weight").weight(1)
+                                ).weight(1)
+                            )
+                        )
                     );
                 case 3:
                     return LAPFragment(
-                        build(LAPButton("I'm a pink button").backgroundColorRes(R.color.colorAccent), ctx)
+                        build(ctx, LAPButton("I'm a pink button").backgroundColorRes(R.color.colorAccent))
                     );
                 case 4:
                     return LAPFragment(
-                        build(LAPVerticalLayout(
-                            LAPTextView("LAPListView simple"),
-                            LAPListView(generateList(50)).weight(1).height(0)
-                        ), ctx)
+                        build(ctx,
+                            LAPVerticalLayout(
+                                LAPTextView("LAPListView simple"),
+                                LAPListView(generateList(50)).weight(1).height(0)
+                            )
+                        )
                     );
                 case 5:
                     return LAPFragment(
-                        build(LAPVerticalLayout(
-                            LAPTextView("LAPListView with LAPViewMaker"),
-                            LAPListView(generateList(50), new LAPViewMaker<Item>() {
-                                @Override
-                                public LAPView makeView(Item item) {
-                                    return LAPHorizontalLayout(
-                                        LAPTextView(item.nome).padding(dp(16)),
-                                        LAPTextView(item.bla).allCaps(true).margin(dp(16), dp(8))
-                                    );
-                                }
-                            }).weight(1).height(0)
-                        ), ctx)
+                        build(ctx,
+                            LAPVerticalLayout(
+                                LAPTextView("LAPListView with LAPViewMaker"),
+                                LAPListView(generateList(50), new LAPViewMaker<Item>() {
+                                    @Override
+                                    public LAPView makeView(Item item) {
+                                        return LAPHorizontalLayout(
+                                            LAPTextView(item.nome).padding(dp(16)),
+                                            LAPTextView(item.bla).allCaps(true).margin(dp(16), dp(8))
+                                        );
+                                    }
+                                }).weight(1).height(0)
+                            )
+                        )
                     );
                 case 6:
                     return LAPFragment(
-                        build(LAPVerticalLayout(
-                            LAPTextView("LAPListView with LAPViewMaker"),
-                            LAPListView(generateList(50), new LAPBindableViewMaker<Item>() {
+                        build(ctx,
+                            LAPVerticalLayout(
+                                LAPTextView("LAPListView with LAPViewMaker"),
+                                LAPListView(generateList(50), new LAPBindableViewMaker<Item>() {
 
-                                Integer idName = generateId();
-                                Integer idBla = generateId();
+                                    Integer idName = generateId();
+                                    Integer idBla = generateId();
 
-                                @Override
-                                public LAPView makeView() {
-                                    return LAPVerticalLayout(
-                                        LAPButton("").id(idName).margin(dp(16)),
-                                        LAPTextView("").id(idBla).padding(dp(32))
-                                    );
-                                }
+                                    @Override
+                                    public LAPView makeView() {
+                                        return LAPVerticalLayout(
+                                            LAPButton("").id(idName).margin(dp(16)),
+                                            LAPTextView("").id(idBla).padding(dp(32))
+                                        );
+                                    }
 
-                                @Override
-                                public View bind(View v, Item object) {
-                                    Button btnName = (Button) v.findViewById(idName);
-                                    TextView txtBla = (TextView) v.findViewById(idBla);
-                                    btnName.setText(object.nome);
-                                    txtBla.setText(object.bla);
-                                    txtBla.setAllCaps(object.index % 2 == 0);
-                                    return v;
-                                }
-                            })), ctx)
+                                    @Override
+                                    public View bind(View v, Item object) {
+                                        Button btnName = (Button) v.findViewById(idName);
+                                        TextView txtBla = (TextView) v.findViewById(idBla);
+                                        btnName.setText(object.nome);
+                                        txtBla.setText(object.bla);
+                                        txtBla.setAllCaps(object.index % 2 == 0);
+                                        return v;
+                                    }
+                                })
+                            )
+                        )
                     );
             }
             return null;

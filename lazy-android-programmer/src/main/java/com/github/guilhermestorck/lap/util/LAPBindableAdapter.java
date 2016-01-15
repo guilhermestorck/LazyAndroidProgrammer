@@ -44,7 +44,7 @@ public class LAPBindableAdapter<T> extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View bindView;
         if (convertView == null) {
-            bindView = LAPBuilder.build(viewMaker.makeView(), activity);
+            bindView = LAPBuilder.build(activity, viewMaker.makeView());
         } else {
             bindView = convertView;
         }

@@ -162,9 +162,9 @@ public class LazyAndroidProgrammer {
     }
 
     /* Utils */
-    public static <T extends LAPView> View build(T lapView, Activity activity)
+    public static <T extends LAPView> View build(Activity activity, T lapView)
     {
-        return LAPBuilder.build(lapView, activity);
+        return LAPBuilder.build(activity, lapView);
     }
 
     public static int dp(int n)

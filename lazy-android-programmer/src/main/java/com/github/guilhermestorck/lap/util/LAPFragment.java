@@ -29,7 +29,7 @@ public class LAPFragment extends Fragment {
 
     public static LAPFragment make(Activity activity, LAPView view) {
         LAPFragment frag = new LAPFragment();
-        frag.view = LAPBuilder.build(view, activity);
+        frag.view = LAPBuilder.build(activity, view);
         return frag;
     }
 

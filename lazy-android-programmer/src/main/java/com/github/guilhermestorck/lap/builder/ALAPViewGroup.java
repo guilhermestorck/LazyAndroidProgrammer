@@ -23,7 +23,7 @@ abstract class ALAPViewGroup<T> extends ALAPLayoutedView<T> {
         final ViewGroup viewGroup = (ViewGroup) ALAPViewGroup.super.fill(v, activity);
         View builtView;
         for(LAPView view : views) {
-            builtView = LAPBuilder.build(view, activity);
+            builtView = LAPBuilder.build(activity, view);
             if(view instanceof ALAPLayoutedView) {
                 builtView.setLayoutParams(((ALAPLayoutedView) view).getLayoutParams(viewGroup));
             }
