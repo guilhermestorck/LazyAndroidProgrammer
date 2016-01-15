@@ -9,6 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 
 import com.github.guilhermestorck.lap.builder.*;
+import com.github.guilhermestorck.lap.util.IdGenerator;
+import com.github.guilhermestorck.lap.util.LAPBindableViewMaker;
 import com.github.guilhermestorck.lap.util.LAPFragment;
 import com.github.guilhermestorck.lap.util.LAPViewMaker;
 
@@ -154,12 +156,17 @@ public class LazyAndroidProgrammer {
         return new LAPListView<T>(items, viewMaker);
     }
 
+    public static <T> LAPListView<T> LAPListView(List<T> items, LAPBindableViewMaker<T> viewMaker)
+    {
+        return new LAPListView<T>(items, viewMaker);
+    }
+
+    /* Utils */
     public static <T extends LAPView> View build(T lapView, Activity activity)
     {
         return LAPBuilder.build(lapView, activity);
     }
 
-    /* Utils */
     public static int dp(int n)
     {
         return applyDimension(n, TypedValue.COMPLEX_UNIT_DIP);
@@ -173,6 +180,11 @@ public class LazyAndroidProgrammer {
     private static int applyDimension(int n, int unit)
     {
         return (int) TypedValue.applyDimension(unit, n, Resources.getSystem().getDisplayMetrics());
+    }
+
+    public static Integer generateId()
+    {
+        return IdGenerator.generateId();
     }
 
 }

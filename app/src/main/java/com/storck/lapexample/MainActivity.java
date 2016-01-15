@@ -14,8 +14,12 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.github.guilhermestorck.lap.builder.LAPView;
+import com.github.guilhermestorck.lap.util.LAPBindableViewMaker;
 import com.github.guilhermestorck.lap.util.LAPViewMaker;
 
 import java.util.ArrayList;
@@ -116,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                             LAPTextView("LAPHorizontalLayout"),
                             LAPHorizontalLayout(
                                 LAPButton("Wrapping").wrapHeight().gravity(Gravity.CENTER_VERTICAL),
-                                LAPButton("Filling").wrapHeight(),
+                                LAPButton("Filling").fillHeight(),
                                 LAPButton("Bigger weight").weight(1)
                             ).weight(1)
                         ), ctx)
@@ -147,13 +151,41 @@ public class MainActivity extends AppCompatActivity {
                             }).weight(1).height(0)
                         ), ctx)
                     );
+                case 6:
+                    return LAPFragment(
+                        build(LAPVerticalLayout(
+                            LAPTextView("LAPListView with LAPViewMaker"),
+                            LAPListView(generateList(50), new LAPBindableViewMaker<Item>() {
+
+                                Integer idName = generateId();
+                                Integer idBla = generateId();
+
+                                @Override
+                                public LAPView makeView() {
+                                    return LAPVerticalLayout(
+                                        LAPButton("").id(idName).margin(dp(16)),
+                                        LAPTextView("").id(idBla).padding(dp(32))
+                                    );
+                                }
+
+                                @Override
+                                public View bind(View v, Item object) {
+                                    Button btnName = (Button) v.findViewById(idName);
+                                    TextView txtBla = (TextView) v.findViewById(idBla);
+                                    btnName.setText(object.nome);
+                                    txtBla.setText(object.bla);
+                                    txtBla.setAllCaps(object.index % 2 == 0);
+                                    return v;
+                                }
+                            })), ctx)
+                    );
             }
             return null;
         }
 
         @Override
         public int getCount() {
-            return 6;
+            return 7;
         }
 
         @Override

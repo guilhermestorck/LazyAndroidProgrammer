@@ -23,31 +23,33 @@ compile ('com.github.guilhermestorck:lazy-android-programmer:0.0.7') {
 
 ## Layout Fluent Builder
 
-It would be cool if we could write
+It would be cool if, instead of lots of xml and lines of code, we could create views by just writing
 
 ```java
 import static com.github.guilhermestorck.lap.LazyAndroidProgrammer.*;
 
 class MyActivity extends Activity {
 
-  ...
+    ...
 
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(
-      build(LAPVerticalLayout(
-        LAPTextView("Oh, look! I'm a text view!").fillWidth().padding(32),
-        LAPButton("If you press me, I'll scream").fillWidth().weight(1)
-      ), activity)
-    );
-  }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(
+            build(this,
+                LAPVerticalLayout(
+                    LAPTextView("Oh, look! I'm a text view!").fillWidth().padding(32),
+                    LAPButton("And I'm a button!").fillWidth().weight(1)
+                )
+            )
+        );
+    }
 
-  ...
+    ...
 
 }
 ```
 
-Now we can =)
+Check the [example application](https://github.com/guilhermestorck/lazy-android-programmer/blob/master/app/src/main/java/com/storck/lapexample/MainActivity.java) for more examples
 
 Just import all the statics from the `com.github.guilhermestorck.lap.LazyAndroidProgrammer` class (or just the ones you need, if you're not that lazy) and start using them.
 By using those builder methods and the chain setters of each class it is possible to create layouts in a very concise way.
@@ -66,6 +68,13 @@ LAPButton(String label, View.OnClickListener callback);
 
 LAPButton(Integer labelRes);
 LAPButton(Integer labelRes, View.OnClickListener callback);
+```
+###### LAPListView
+```java
+LAPListView(ListAdapter adapter);
+LAPListView(List<T> items);
+LAPListView(List<T> items, LAPViewMaker<T> viewMaker);
+LAPListView(List<T> items, LAPBindableViewMaker<T> viewMaker);
 ```
 ###### LAPCheckBox
 ```java
@@ -144,6 +153,10 @@ LAP(View view);
 | dividerDrawable(Drawable dividerDrawable) | LAPLinearLayout |
 | orientation(Integer orientation) | LAPLinearLayout |
 | weightSum(Float weightSum) | LAPLinearLayout |
+| adapter(ListAdapter adapter)|LAPListView|
+| adapter(List<T> items)|LAPListView|
+| adapter(List<T> items, LAPViewMaker<T> viewMaker)|LAPListView|
+| adapter(List<T> items, LAPBindableViewMaker<T> viewMaker)|LAPListView|
 
 
 ## Other functions
@@ -151,6 +164,7 @@ LAP(View view);
 ```java
 dp(int n) //converts n dp to pixels
 sp(int n) //converts n sp to pixels
+generateId() //create a new id to be used on views
 ```
 
     Copyright 2015 Guilherme Storck

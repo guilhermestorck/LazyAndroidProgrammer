@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.github.guilhermestorck.lap.LAPBuilder;
+
 import java.util.List;
 
 /**
@@ -42,8 +44,7 @@ public class LAPBindableAdapter<T> extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View bindView;
         if (convertView == null) {
-            //TODO start using LAPBuilder
-            bindView = viewMaker.makeView().build(activity);
+            bindView = LAPBuilder.build(viewMaker.makeView(), activity);
         } else {
             bindView = convertView;
         }

@@ -2,6 +2,7 @@ package com.github.guilhermestorck.lap.builder;
 
 import android.widget.ListAdapter;
 
+import com.github.guilhermestorck.lap.util.LAPBindableViewMaker;
 import com.github.guilhermestorck.lap.util.LAPViewMaker;
 
 import java.util.List;
@@ -20,6 +21,10 @@ public final class LAPListView<I> extends ALAPListView<LAPListView<I>, I> {
     }
 
     public LAPListView(List<I> items, LAPViewMaker<I> viewMaker) {
+        adapter(items, viewMaker);
+    }
+
+    public LAPListView(List<I> items, LAPBindableViewMaker<I> viewMaker) {
         adapter(items, viewMaker);
     }
 

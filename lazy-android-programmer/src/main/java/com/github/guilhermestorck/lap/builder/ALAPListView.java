@@ -6,6 +6,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.github.guilhermestorck.lap.util.LAPAdapter;
+import com.github.guilhermestorck.lap.util.LAPBindableAdapter;
+import com.github.guilhermestorck.lap.util.LAPBindableViewMaker;
 import com.github.guilhermestorck.lap.util.LAPViewMaker;
 
 import java.util.List;
@@ -18,6 +20,7 @@ abstract class ALAPListView<T, I> extends ALAPViewGroup<T> {
     List<I> items = null;
     ListAdapter adapter = null;
     LAPViewMaker<I> viewMaker = null;
+    LAPBindableViewMaker<I> bindableViewMaker = null;
 
     ALAPListView() {  }
 
@@ -33,6 +36,8 @@ abstract class ALAPListView<T, I> extends ALAPViewGroup<T> {
         } else {
             if(viewMaker != null) {
                 v.setAdapter(createLAPAdapter(activity, items, viewMaker));
+            } else if(bindableViewMaker != null) {
+                v.setAdapter(createLAPAdapter(activity, items, bindableViewMaker));
             } else {
                 v.setAdapter(createLAPAdapter(activity, items));
             }
@@ -44,6 +49,7 @@ abstract class ALAPListView<T, I> extends ALAPViewGroup<T> {
         this.adapter = adapter;
         this.items = null;
         this.viewMaker = null;
+        this.bindableViewMaker = null;
         return self();
     }
 
@@ -51,6 +57,15 @@ abstract class ALAPListView<T, I> extends ALAPViewGroup<T> {
         this.adapter = null;
         this.items = items;
         this.viewMaker = viewMaker;
+        this.bindableViewMaker = null;
+        return self();
+    }
+
+    public T adapter(List<I> items, LAPBindableViewMaker<I> viewMaker) {
+        this.adapter = null;
+        this.items = items;
+        this.viewMaker = null;
+        this.bindableViewMaker = viewMaker;
         return self();
     }
 
@@ -58,6 +73,7 @@ abstract class ALAPListView<T, I> extends ALAPViewGroup<T> {
         this.adapter = null;
         this.items = items;
         this.viewMaker = null;
+        this.bindableViewMaker = null;
         return self();
     }
 
@@ -74,6 +90,10 @@ abstract class ALAPListView<T, I> extends ALAPViewGroup<T> {
 
     private ListAdapter createLAPAdapter(final Activity activity, List<I> items, LAPViewMaker<I> viewMaker) {
         return new LAPAdapter<I>(activity, items, viewMaker);
+    }
+
+    private ListAdapter createLAPAdapter(final Activity activity, List<I> items, LAPBindableViewMaker<I> viewMaker) {
+        return new LAPBindableAdapter<I>(activity, items, viewMaker);
     }
 
 }
