@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/guilhermestorck/lazy-android-programmer'
     gitUrl = 'https://github.com/guilhermestorck/lazy-android-programmer.git'
 
-    libraryVersion = '0.0.8'
+    libraryVersion = '0.0.9'
 
     developerId = 'guilhermestorck'
     developerName = 'Guilherme Storck'
