@@ -22,8 +22,7 @@ abstract class ALAPLinearLayout<T> extends ALAPViewGroup<T> {
         if(dividerDrawable != null) v.setDividerDrawable(dividerDrawable);
         if(orientation != null) v.setOrientation(orientation);
         if(weightSum != null) v.setWeightSum(weightSum);
-        v = (LinearLayout) super.fill(v, activity);
-        return v;
+        return (LinearLayout) super.fill(v, activity);
     }
 
     private Integer gravity = null;

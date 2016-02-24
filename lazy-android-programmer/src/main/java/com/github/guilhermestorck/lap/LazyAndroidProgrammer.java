@@ -124,6 +124,11 @@ public class LazyAndroidProgrammer {
         return new LAPHorizontalScrollView(view);
     }
 
+    public static LAPRelativeLayout LAPRelativeLayout(LAPView... views)
+    {
+        return new LAPRelativeLayout(views);
+    }
+
     /* Wrappers */
     public static <T extends View> LAP<T> LAP(T view)
     {

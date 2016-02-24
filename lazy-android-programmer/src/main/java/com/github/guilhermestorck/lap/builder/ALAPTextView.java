@@ -17,7 +17,6 @@ abstract class ALAPTextView<T> extends ALAPLayoutedView<T> {
     }
 
     protected TextView fill(TextView v, Activity activity) {
-        v = (TextView) super.fill(v, activity);
         if(text != null) v.setText(text);
         if(textRes != null) v.setText(textRes);
         if(allCaps != null) v.setAllCaps(allCaps);
@@ -26,7 +25,7 @@ abstract class ALAPTextView<T> extends ALAPLayoutedView<T> {
         if(ems != null) v.setEms(ems);
         if(gravity != null) v.setGravity(gravity);
         if(height != null) v.setHeight(height);
-        return v;
+        return (TextView) super.fill(v, activity);
     }
 
     private CharSequence text;

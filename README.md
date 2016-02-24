@@ -92,6 +92,17 @@ LAPHorizontalLayout(LAPView... views);
 ```
 
 where `orientation` can be one of `LinearLayout.VERTICAL` or `LinearLayout.VERTICAL`.
+
+###### LAPFrameLayout
+```java
+LAPFrameLayout(LAPView view)
+```
+
+###### LAPRelativeLayout
+```java
+LAPRelativeLayout(LAPView... views)
+```
+
 ###### LAPFragment
 ```java
 LAPFragment(View view);
@@ -114,6 +125,7 @@ View build(Activity activity, LAPView lapView)
 |-------------|:-----------------:|
 | id(Integer id) |All |
 | onClick(OnClickListener onClick) | All |
+| afterBuild(LAPView.OnViewBuilt onViewBuilt) | All |
 | onLongClick(OnLongClickListener onLongClick) | All |
 | alpha(Float alpha) | All |
 | background(Drawable background) | All |
@@ -164,6 +176,8 @@ View build(Activity activity, LAPView lapView)
 | adapter(List<T> items)|LAPListView|
 | adapter(List<T> items, LAPViewMaker<T> viewMaker)|LAPListView|
 | adapter(List<T> items, LAPBindableViewMaker<T> viewMaker)|LAPListView|
+| dividerDrawable(Drawable dividerDrawable) | LAPListView |
+| dividerHeight(int height) | LAPListView |
 
 
 ## Other functions

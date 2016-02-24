@@ -19,8 +19,7 @@ abstract class ALAPScrollView<T> extends ALAPFrameLayout<T> {
     }
 
     protected ScrollView fill(ScrollView v, Activity activity) {
-        v = (ScrollView) super.fill(v, activity);
-        return v;
+        return (ScrollView) super.fill(v, activity);
     }
 
 }

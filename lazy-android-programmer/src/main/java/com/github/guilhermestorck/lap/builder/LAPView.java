@@ -10,4 +10,10 @@ public interface LAPView {
 
     View build(Activity activity);
 
+    interface OnViewBuilt {
+
+        void onViewBuilt(View view, Activity activity);
+
+    }
+
 }

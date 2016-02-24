@@ -19,8 +19,7 @@ abstract class ALAPFrameLayout<T> extends ALAPViewGroup<T> {
     }
 
     protected FrameLayout fill(FrameLayout v, Activity activity) {
-        v = (FrameLayout) super.fill(v, activity);
-        return v;
+        return (FrameLayout) super.fill(v, activity);
     }
 
 }

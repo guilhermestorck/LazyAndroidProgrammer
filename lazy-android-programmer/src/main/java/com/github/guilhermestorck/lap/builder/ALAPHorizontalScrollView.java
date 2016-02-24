@@ -19,8 +19,7 @@ abstract class ALAPHorizontalScrollView<T>  extends ALAPFrameLayout<T> {
     }
 
     protected HorizontalScrollView fill(HorizontalScrollView v, Activity activity) {
-        v = (HorizontalScrollView) super.fill(v, activity);
-        return v;
+        return (HorizontalScrollView) super.fill(v, activity);
     }
 
 }

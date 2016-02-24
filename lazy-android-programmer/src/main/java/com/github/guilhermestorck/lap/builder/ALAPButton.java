@@ -14,8 +14,7 @@ abstract class ALAPButton<T> extends ALAPTextView<T> {
     }
 
     protected Button fill(Button v, Activity activity) {
-        v = (Button) super.fill(v, activity);
-        return v;
+        return (Button) super.fill(v, activity);
     }
 
 }

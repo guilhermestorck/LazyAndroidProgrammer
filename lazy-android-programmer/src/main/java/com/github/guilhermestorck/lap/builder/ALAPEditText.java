@@ -21,9 +21,8 @@ abstract class ALAPEditText<T> extends ALAPTextView<T> {
     private TextWatcher textWatcher = null;
 
     protected EditText fill(EditText v, Activity activity) {
-        v = (EditText) super.fill(v, activity);
         if(textWatcher != null) v.addTextChangedListener(textWatcher);
-        return v;
+        return (EditText) super.fill(v, activity);
     }
 
     public T textWatcher(TextWatcher textWatcher) {

@@ -2,6 +2,7 @@ package com.github.guilhermestorck.lap.builder;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -21,6 +22,8 @@ abstract class ALAPListView<T, I> extends ALAPViewGroup<T> {
     ListAdapter adapter = null;
     LAPViewMaker<I> viewMaker = null;
     LAPBindableViewMaker<I> bindableViewMaker = null;
+    Drawable dividerDrawable = null;
+    Integer dividerHeight = null;
 
     ALAPListView() {  }
 
@@ -30,7 +33,8 @@ abstract class ALAPListView<T, I> extends ALAPViewGroup<T> {
     }
 
     protected ListView fill(ListView v, Activity activity) {
-        v = (ListView) super.fill(v, activity);
+        if(dividerDrawable != null) v.setDivider(dividerDrawable);
+        if(dividerHeight != null) v.setDividerHeight(dividerHeight);
         if(adapter != null) {
             v.setAdapter(adapter);
         } else {
@@ -42,7 +46,17 @@ abstract class ALAPListView<T, I> extends ALAPViewGroup<T> {
                 v.setAdapter(createLAPAdapter(activity, items));
             }
         }
-        return v;
+        return (ListView) super.fill(v, activity);
+    }
+
+    public T dividerDrawable(Drawable dividerDrawable) {
+        this.dividerDrawable = dividerDrawable;
+        return self();
+    }
+
+    public T dividerHeight(Integer dividerHeight) {
+        this.dividerHeight = dividerHeight;
+        return self();
     }
 
     public T adapter(ListAdapter adapter) {

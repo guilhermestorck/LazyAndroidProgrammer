@@ -39,6 +39,7 @@ abstract class ALAPView<T> implements LAPView {
         // if(textAlignment != null) v.setTextAlignment(textAlignment);
         // if(textDirection != null) v.setTextDirection(textDirection);
         if(visibility != null) v.setVisibility(visibility);
+        if(onViewBuiltListener != null) onViewBuiltListener.onViewBuilt(v, activity);
         return v;
     }
 
@@ -58,6 +59,7 @@ abstract class ALAPView<T> implements LAPView {
     //private Integer textAlignment = null;
     //private Integer textDirection = null;
     private Integer visibility = View.VISIBLE;
+    private LAPView.OnViewBuilt onViewBuiltListener = null;
 
     public T onClick(OnClickListener onClick) {
         this.onClick = onClick;
@@ -171,4 +173,10 @@ abstract class ALAPView<T> implements LAPView {
         this.visibility = View.GONE;
         return self();
     }
+
+    public T afterBuild(OnViewBuilt onViewBuiltListener) {
+        this.onViewBuiltListener = onViewBuiltListener;
+        return self();
+    }
+
 }

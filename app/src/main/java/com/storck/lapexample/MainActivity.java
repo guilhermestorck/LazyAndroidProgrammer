@@ -192,13 +192,31 @@ public class MainActivity extends AppCompatActivity {
                             )
                         )
                     );
+                case 7:
+                    Integer someId = generateId();
+                    return LAPFragment(
+                        build(ctx,
+                            LAPRelativeLayout(
+                                LAPButton("left").alignParentLeft(),
+                                LAPButton("right").alignParentRight(),
+                                LAPButton("Im below center").padding(dp(2)).below(someId).centerHorizontal(),
+                                LAPButton("center").center().id(someId),
+                                LAPButton("Im above center").padding(dp(4)).above(someId).centerHorizontal()
+                            ).fillHeight().fillWidth().afterBuild(new LAPView.OnViewBuilt() {
+                                @Override
+                                public void onViewBuilt(View view, Activity activity) {
+                                    view.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                                }
+                            })
+                        )
+                    );
             }
             return null;
         }
 
         @Override
         public int getCount() {
-            return 7;
+            return 8;
         }
 
         @Override

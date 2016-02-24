@@ -12,10 +12,9 @@ abstract class ALAPCompoundButton<T> extends ALAPButton<T>{
     ALAPCompoundButton() { }
 
     protected CompoundButton fill(CompoundButton v, Activity activity) {
-        v = (CompoundButton) super.fill(v, activity);
         if(checked != null) v.setChecked(checked);
         if(onCheckedChange != null) v.setOnCheckedChangeListener(onCheckedChange);
-        return v;
+        return (CompoundButton) super.fill(v, activity);
     }
 
     private Boolean checked = null;
